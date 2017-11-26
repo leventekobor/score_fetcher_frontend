@@ -1,1 +1,1 @@
-BASE_URL = "http://192.168.1.9:6969/get"
+BASE_URL = "http://52.57.196.190:5000/get"

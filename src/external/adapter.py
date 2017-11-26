@@ -14,6 +14,13 @@ from setting import *
 
 def get_matches():
     print(BASE_URL)
-    data = requests.get(BASE_URL)
-    return data.json()["matches"]
+    response = requests.get(BASE_URL)
+    return response.json()
 
+def get_match_ids():
+	data = get_matches()
+	ids = []
+	for i in range (1000):
+		ids.append(data["matches"][i]["id"]) 
+	
+	print(ids)
