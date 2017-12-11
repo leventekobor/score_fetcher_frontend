@@ -43,3 +43,4 @@ def filter_manage_data(resp):
     match_data["away"] = resp.json()["away_last_matches"][0:9:]
     match_data["home"] = resp.json()["home_last_matches"][0:9:]
     match_data["mutual"] = resp.json()["mutual_last_matches"][0:9:]
+    return match_data
