@@ -10,27 +10,30 @@
 import requests
 import json
 from setting import *
+from src.external.logger import log
 
 
 def get_matches():
-    print(BASE_URL)
     response = requests.get(BASE_URL)
-    print("request recived")
     return response.json()
 
 
 def get_match_ids():
+    log("all match fetch start")
     data = get_matches()
+    log("all match fetch end")
     ids = []
+    log("parse id's start")
     for match in data["matches"]:
         ids.append(match["id"])
+    log("parse id's end")    
     return ids
 
 def receive_match_data():
     final_data = []
-    for ids in get_match_ids():
-        print("collecting data from: " + ids)
-        resp = requests.get(BASE_URL + "/" + str(ids))
+    for match_id in get_match_ids():
+        log("fetch match data  " + str(match_id))
+        resp = requests.get(BASE_URL + "/" + str(match_id))
         final_data.append(filter_manage_data(resp))
     print(final_data)
 
