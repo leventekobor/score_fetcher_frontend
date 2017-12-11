@@ -6,4 +6,4 @@ log("application start")
 try:
     receive_match_data()
 except Exception as e:
-	log(str(e), "ERROR")
+    log(str(e), "ERROR")
