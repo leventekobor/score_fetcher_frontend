@@ -7,12 +7,12 @@ def generate(level, message):
     log["level"] = level
     log["message"] = message
     print(log_to_str(log))
-    return str(log)
+    return log_to_str(log)
 
 
 def save_log(log):
     with open("log.txt", "a") as log_file:
-        log_file.write(log_to_str(log) + "\n")
+        log_file.write(log + "\n")
 
 
 def log(message, level="INFO"):
@@ -20,4 +20,4 @@ def log(message, level="INFO"):
 
 
 def log_to_str(log):
-	return log["time"] + " " + log["level"] + " " + log["message"] 
+	return str(log["time"]) + " " + log["level"] + " " + log["message"] 
