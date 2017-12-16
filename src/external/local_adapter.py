@@ -1,7 +1,7 @@
 from src.external.logger import log
-import csv
+# import csv
 
-f = csv.writer(open("data.csv", "wb+"))
+# f = csv.writer(open("data.csv", "wb+"))
 
 def finalize_fetch(fetched_data):
 	log("handle " + str(len(fetched_data)) + " data particle")

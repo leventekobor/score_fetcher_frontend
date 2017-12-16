@@ -15,6 +15,8 @@ from src.external.logger import log
 from src.external.local_adapter import handle_single_match, finalize_fetch
 
 
+GLOBAL_CAP = 5
+
 def get_matches():
     response = requests.get(BASE_URL)
     return response.json()
@@ -44,6 +46,10 @@ def receive_match_data():
             final_data.append(filter_manage_data(resp))
             handle_single_match(filter_manage_data(resp))
             fetched_counter += 1
+            if fetched_counter == GLOBAL_CAP:
+                log("cap reached, fetch end", "TEST")
+                break
+
         except KeyboardInterrupt:
             sys.exit(2)    
         except:
