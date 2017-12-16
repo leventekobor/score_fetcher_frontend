@@ -6,6 +6,7 @@ def generate(level, message):
     log["time"] = str(datetime.now())
     log["level"] = level
     log["message"] = message
+    print(str(log))
     return str(log)
 
 
