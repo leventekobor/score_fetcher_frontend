@@ -11,7 +11,7 @@ import requests
 import json
 from setting import *
 from src.external.logger import log
-from src.external.local_adapter import handle_data
+from src.external.local_adapter import handle_single_match, finalize_fetch
 
 
 def get_matches():
@@ -39,10 +39,11 @@ def receive_match_data():
         try:
             resp = requests.get(BASE_URL + "/" + str(match_id))
             final_data.append(filter_manage_data(resp))
+            handle_single_match(filter_manage_data(resp))
         except:
             log("fetch failed, id: " + str(match_id) , "WARN")
             match_ids.append(match_id)    
-    handle_data(final_data)
+    finalize_fetch(final_data)
 
 
 def filter_manage_data(resp):
