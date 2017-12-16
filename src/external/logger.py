@@ -6,7 +6,7 @@ def generate(level, message):
     log["time"] = str(datetime.now())
     log["level"] = level
     log["message"] = message
-    print(str(log))
+    print(log_to_str(log))
     return str(log)
 
 
@@ -17,3 +17,7 @@ def save_log(log):
 
 def log(message, level="INFO"):
     save_log(generate(level, message))
+
+
+def log_to_str(log):
+	return log["time"] + " " + log["level"] + " " + log["message"] 
