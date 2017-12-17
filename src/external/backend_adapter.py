@@ -15,7 +15,7 @@ from src.external.logger import log
 from src.external.local_adapter import handle_single_match, finalize_fetch
 
 
-GLOBAL_CAP = 5
+GLOBAL_CAP = 15
 
 def get_matches():
     response = requests.get(BASE_URL)
