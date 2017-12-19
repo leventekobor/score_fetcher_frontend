@@ -40,7 +40,7 @@ def receive_match_data():
     all_match = str(len(match_ids_with_names))
     fetched_counter = 0
     log("all avaible match: " + all_match)
-    for match_id_with_names in match_ids_with_names:
+    for index, match_id_with_names in enumerate(match_ids_with_names):
         match_id = match_id_with_names[0]
         home = match_id_with_names[1]
         away = match_id_with_names[2]
@@ -48,7 +48,7 @@ def receive_match_data():
         try:
             resp = requests.get(BASE_URL + "/" + str(match_id))
             final_data.append(filter_manage_data(resp))
-            handle_single_match(filter_manage_data(resp), home, away)
+            handle_single_match(filter_manage_data(resp), home, away, index)
             fetched_counter += 1
             if fetched_counter == GLOBAL_CAP:
                 log("cap reached, fetch end", "TEST")
