@@ -25,7 +25,7 @@ def handle_single_match(match_data, home, away, index):
     away_last_matches_egal = get_egal_count(match_data["away"])
     mutual_last_matches_egal = get_egal_count(match_data["mutual"])
     write_single_line([league, match_name, EMPTY, LAST_MATCHES_CAP, home_last_matches_egal, LAST_MATCHES_CAP - home_last_matches_egal,
-       LAST_MATCHES_CAP, away_last_matches_egal, LAST_MATCHES_CAP - away_last_matches_egal, mutual_last_matches_egal, LAST_MATCHES_CAP - mutual_last_matches_egal ], index)
+       LAST_MATCHES_CAP, away_last_matches_egal, LAST_MATCHES_CAP - away_last_matches_egal, mutual_last_matches_egal, LAST_MATCHES_CAP - mutual_last_matches_egal ])
 
 
 def get_egal_count(data):
