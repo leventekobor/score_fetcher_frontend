@@ -2,7 +2,7 @@
 from src.external.backend_adapter import receive_match_data
 from src.external.logger import log
 
-DEBUG = True
+DEBUG = False
 
 log("application start")
 

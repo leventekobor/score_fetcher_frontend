@@ -6,8 +6,6 @@ from src.external.logger import log
 from src.external.local_adapter import handle_single_match, finalize_fetch
 
 
-GLOBAL_CAP = 15
-
 def get_matches():
     response = requests.get(BASE_URL)
     return response.json()
@@ -22,8 +20,9 @@ def get_match_ids():
     for match in data["matches"]:
         if match["score"] == "-:-":
             ids.append((match["id"], match["home_name"], match["away_name"]))
-    log("parse id's end")    
+    log("parse id's end")
     return ids
+
 
 def receive_match_data():
     final_data = []
@@ -35,21 +34,19 @@ def receive_match_data():
         match_id = match_id_with_names[0]
         home = match_id_with_names[1]
         away = match_id_with_names[2]
-        log("fetch match data  " + str(match_id) + " " + str(fetched_counter) + "/" + all_match)
+        log("fetch match data  " + str(match_id) +
+            " " + str(fetched_counter) + "/" + all_match)
         try:
             resp = requests.get(BASE_URL + "/" + str(match_id))
             final_data.append(filter_manage_data(resp))
             handle_single_match(filter_manage_data(resp), home, away, index)
             fetched_counter += 1
-            if fetched_counter == GLOBAL_CAP:
-                log("cap reached, fetch end", "TEST")
-                break
 
         except KeyboardInterrupt:
-            sys.exit(2)    
+            sys.exit(2)
         except ValueError:
-            log("fetch failed, id: " + str(match_id) , "WARN")
-            match_ids_with_names.append(match_id_with_names)    
+            log("fetch failed, id: " + str(match_id), "WARN")
+            match_ids_with_names.append(match_id_with_names)
     finalize_fetch(final_data)
 
 
