@@ -28,20 +28,6 @@ def handle_single_match(match_data, home, away, index):
        LAST_MATCHES_CAP, away_last_matches_egal, LAST_MATCHES_CAP - away_last_matches_egal, mutual_last_matches_egal, LAST_MATCHES_CAP - mutual_last_matches_egal ])
 
 
-def get_egal_count(data):
-    counter = 0
-    for i in range(LAST_MATCHES_CAP):
-        try:
-            counter += 1 if is_egal(data[i]) else 0
-        except:
-            pass
-    return counter
-
-
-def is_egal(match):
-    points = match["score"].split("(")[0].split(" : ")
-    return int(points[0]) == int(points[1])
-
 
 def get_egal_count(data):
     counter = 0
@@ -54,5 +40,5 @@ def get_egal_count(data):
 
 
 def is_egal(match):
-    points = match["score"].split("(")[0].split(" : ")
+    points = match["score"].split("(")[1].split(")")[0].split(" : ")
     return int(points[0]) == int(points[1])
