@@ -44,7 +44,7 @@ def receive_match_data():
 
         except KeyboardInterrupt:
             sys.exit(2)
-        except ValueError:
+        except:
             log("fetch failed, id: " + str(match_id), "WARN")
             match_ids_with_names.append(match_id_with_names)
     finalize_fetch(final_data)
