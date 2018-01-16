@@ -6,7 +6,7 @@ from src.external.logger import log
 from src.external.local_adapter import handle_single_match, finalize_fetch
 
 
-CAP = 60
+CAP = 120
 
 def get_matches():
     response = requests.get(BASE_URL)
