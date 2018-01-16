@@ -6,6 +6,8 @@ from src.external.logger import log
 from src.external.local_adapter import handle_single_match, finalize_fetch
 
 
+CAP = 60
+
 def get_matches():
     response = requests.get(BASE_URL)
     return response.json()
@@ -34,6 +36,8 @@ def receive_match_data():
         match_id = match_id_with_names[0]
         home = match_id_with_names[1]
         away = match_id_with_names[2]
+        if fetched_counter == CAP:
+            break
         log("fetch match data  " + str(match_id) +
             " " + str(fetched_counter) + "/" + all_match)
         try:
@@ -43,9 +47,10 @@ def receive_match_data():
             fetched_counter += 1
 
         except KeyboardInterrupt:
+            finalize_fetch(final_data)
             sys.exit(2)
-        except:
-            log("fetch failed, id: " + str(match_id), "WARN")
+        except Exception as e:
+            log("fetch failed, id: " + str(match_id) + " " + str(e), "WARN")
             match_ids_with_names.append(match_id_with_names)
     finalize_fetch(final_data)
 
